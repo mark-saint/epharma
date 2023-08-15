@@ -23,8 +23,9 @@ class Stock:
         #TODO: Update the quantity
 
         product = self.getProductByID(id)
-        if product is not None and product.quantity + change >= 0:
-            product.quantity += change
+        if product is not None:
+            if product is not None and product.quantity + change >= 0:
+                product.quantity += change
 
 
     def getProductByID(self, id: str) -> Product:
@@ -63,6 +64,9 @@ class Stock:
         Args: 
             infile: input file to the function
         """
+
+        products_list = []
+
         with open(infile, 'r') as f:
             stock_data = json.load(f)
             
@@ -81,7 +85,9 @@ class Stock:
                     dosage_instruction=product_dict["dosage_instruction"],
                     requires_prescription=product_dict["requires_prescription"]
                 )
-                self.products.append(product)
+                products_list.append(product)
+
+        return products_list
         
     
     def __str__(self) -> str:

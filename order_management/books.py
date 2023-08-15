@@ -26,6 +26,8 @@ class BookRecords:
         #TODO: In the format below, return a representation of the records
         # |      # | Date                | Customer   | Medication | Quantity | Purchase Price | Prescription |
         # |      1 | 2023-06-03 21:23:25 | doe        | Quinine    |        3 |       1400 RWF | PHA1         |
+
+        
     
     def reportOnPrescriptions(self) -> str:
         """Reports on prescription sales.
