@@ -79,6 +79,12 @@ class Cart:
                     product.quantity += q
         self.products.clear()
 
+    #clear cart for purchased items without increasing stock as was the case when removing and clearing items
+    def clear_purchased(self):
+        """Clears up the cart.
+        """
+        self.products.clear()
+
     @property
     def cost(self):
         """Returns the total cost of the cart"""

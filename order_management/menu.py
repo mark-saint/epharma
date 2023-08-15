@@ -92,9 +92,32 @@ class Menu:
                 self.cart.remove(item_code)
                 # ask user to select item to remove   
             elif order_choice == "3":   
-                print("Clear the cart")
+                choice =input("Clear cart? (y/n): ")
+                if choice == "y":
+                    self.cart.clear()
+                elif choice == "n":
+                    self.order_menu()
+                else:
+                    print(MSG_WRONG_INPUT)
+                    self.order_menu()
             elif order_choice == "4":
-                print("Checkout")
+                #show teh items in cart
+                
+                for product_code in self.cart.products:
+                    for product in self.stock.products:
+                        if product_code == product.code:
+                            print(f"{product.name} | {product.price}  | {self.cart.products[product_code]}")
+                print(f"Total: {self.cart.cost}")
+                choice=input("confirm purchase? (y/n): ")
+                if choice == "y":
+                    print("purchase confirmed")
+                    self.cart.clear_purchased()
+                elif choice == "n":
+                    print("purchase cancelled")
+                else:
+                    print(MSG_WRONG_INPUT)
+                    self.order_menu()               
+
             elif order_choice == "0":
                 self.main_menu()
             else:
