@@ -11,7 +11,7 @@ class Stock:
     def __init__(self, products: List[Product]) -> None:
         self.products = products
 
-    def update(self, id: int, change: int):
+    def update(self, id: str, change: int):
         """Update the quantity of a product by adding or removing
         
         Args:
@@ -19,10 +19,15 @@ class Stock:
             change: the value by which the quantity should be update (+1 adds 1, -2 removes 2 for example)
         """
         #TODO: Make sure the product exists, and that by making the change, the value is still >= 0
-        
+       
         #TODO: Update the quantity
 
-    def getProductByID(self, id: int) -> Product:
+        for prod_ in self.products:
+
+            
+
+
+    def getProductByID(self, id: str) -> Product:
         """Gets a product by its ID
 
         Args:
@@ -31,6 +36,9 @@ class Stock:
         Returns: the product's object
         """
         #TODO: Implement te function
+
+        for prod_ in self.products:
+
         
     def dump(self, outfile: str):
         """Saves the stock to a JSON file"""

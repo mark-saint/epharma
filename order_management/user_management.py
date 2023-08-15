@@ -34,7 +34,6 @@ class UserManagement:
         """
         #TODO: Loop through the loaded accounts and return the one with the right username
         
-        print(self.load())
 
     @staticmethod
     def load(infile: str = 'data/credentials.txt') -> UserManagement:
