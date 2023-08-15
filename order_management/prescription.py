@@ -31,8 +31,10 @@ class Prescription:
         Returns: A boolean denoting whether the value was found
         """
         #TODO: Implement the function
-        # 
-        return NotImplemented
+        
+        
+        
+
         
     def markComplete(self, product: Product):
         """Mark a product's sale complete in the prescriptions file
