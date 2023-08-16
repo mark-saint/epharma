@@ -16,7 +16,7 @@ class BookRecords:
         self.transactions = transactions
     
     def __str__(self) -> str:
-        """Returns a string representation of a record.
+        """Returns a string representation of a record. 
         
         Args:
         
@@ -26,7 +26,14 @@ class BookRecords:
         #TODO: In the format below, return a representation of the records
         # |      # | Date                | Customer   | Medication | Quantity | Purchase Price | Prescription |
         # |      1 | 2023-06-03 21:23:25 | doe        | Quinine    |        3 |       1400 RWF | PHA1         |
-    
+
+        position = 0
+        records_str = ""
+        for transaction in self.transactions:
+            position = position + 1
+            transaction_str = f"{position} | {transaction.date} | {transaction.customer} | {transaction.medication} | {transaction.quantity} | {transaction.purchase_price} | {transaction.prescription}"
+            records_str = records_str + transaction_str + "\n"
+        return records_str
     def reportOnPrescriptions(self) -> str:
         """Reports on prescription sales.
 
@@ -36,6 +43,8 @@ class BookRecords:
         """
         #TODO: From the transactions data, retrieve for each prescription, the actual medications that were processed
         # and aggregate for each, the corresponding total price.
+       
+       #check if the sale has a prescription ID, if it has one, use the prescription ID to get the prescription object, then find the name of the medication in the prescription object
 
         #TODO: output in the following format, the results: 
         # |    # | Prescription ID | Total Price |
@@ -104,6 +113,17 @@ class BookRecords:
             infile: path to the file to be read
         Returns: A new object with the transactions in the file
         """
+
+       
+        with open(infile, "r") as file:
+            record_list = json.load(file)
+            # create a list of sale objects from the file
+            sales_list = [Sale(item['id'], item['name'], item['quantity'], item['price'], item['purchase_price'], item['timestamp'], item['customerID'], item['salesperson'], item['prescriptionID']) for item in record_list]
+            
+
+        # print(sales_list) 
+
+
         #TODO: Implement the function. Make sure to handle the cases where
         # the file does not exist.
-        return NotImplemented
+        return BookRecords(sales_list)

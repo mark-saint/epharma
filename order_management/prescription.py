@@ -27,11 +27,13 @@ class Prescription:
         Args:
             product: the product to verify
             quantity: the quantity to be added
+        # read the prescription file and check if the product is in the prescription
+        # check the quantity      
 
         Returns: A boolean denoting whether the value was found
         """
         #TODO: Implement the function
-        # 
+        # read items from medications list and check if the product is in the prescription and the quantity
         return NotImplemented
         
     def markComplete(self, product: Product):

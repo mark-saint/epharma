@@ -135,6 +135,12 @@ class Menu:
         analytics_choice = input("Enter your choice: ") 
         if analytics_choice == "1":
             print("Total income from purchases")
+            # we can get this from BookRecords.totaltransactions()
+            #create an instance of book records
+            sales_file = 'data/sales.json'
+            books = BookRecords.load(sales_file)
+            print(f"The total transactions is: {books.totalTransactions()}")
+
         elif analytics_choice == "2":
             print("Prescription statistics")
         elif analytics_choice == "3":

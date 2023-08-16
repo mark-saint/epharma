@@ -34,5 +34,7 @@ class Sale:
         """
         #TODO: Return a string that shows the product sold, its unit price
         # the quantity, timestamp, and the total cost in a nice way.
-        pass
+        # sale_str = f"name: {self.name}, unit_price: {self.price}, quantity: {self.quantity}, time {self.timestamp}, total_cost:{self.price*self.quantity}"
+        return f"{self.name} | {self.price} | {self.quantity} |{self.timestamp} | {self.purchase_price}"
+        
 
