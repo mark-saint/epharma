@@ -27,7 +27,13 @@ class BookRecords:
         # |      # | Date                | Customer   | Medication | Quantity | Purchase Price | Prescription |
         # |      1 | 2023-06-03 21:23:25 | doe        | Quinine    |        3 |       1400 RWF | PHA1         |
 
-    
+        transaction_str = "|   {:<4}  | {:<20} | {:<20} | {:<20} | {:<15} | {:<4} | {:<8} |".format(position,
+                                                                                  transaction.date,
+                                                                                  transaction.customer,
+                                                                                  transaction.medication,
+                                                                                  transaction.quantity,
+                                                                                  transaction.purchase_price,
+                                                                                  transaction.prescription)
 
     
     def reportOnPrescriptions(self) -> str:
