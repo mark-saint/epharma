@@ -87,7 +87,7 @@ class Stock:
                 )
                 products_list.append(product)
 
-        return products_list
+        return Stock(products_list)
         
     
     def __str__(self) -> str:

@@ -45,4 +45,109 @@ class Menu:
     * For each of the menu items, when necessary, display a success or error message to guide the user.
     """
 
+
+
+
     # **CHALLENGE** (BONUS): Can you implement the menu to work as a USSD application? Implement and show your design
+
+    def main_menu(self):
+        print("1. Order management")
+        print("2. Analytics")
+        print("0. Exit")
+        main_choice = input("Enter your choice: ")
+        if main_choice == "1":
+            self.order_menu()
+        elif main_choice == "2":
+            self.analytics_menu()
+        elif main_choice == "0":
+            exit()
+        else:
+            print(MSG_WRONG_INPUT)
+            self.main_menu()
+
+
+    def order_menu(self):
+        order_menu = True
+        while(order_menu):
+            print("1. Adding to a cart")
+            print("2. Remove from a cart")
+            print("3. Clear the cart")
+            print("4. Checkout")
+            print("0. Back")
+            order_choice = input("Enter your choice: ")
+            if order_choice == "1":
+                add_to_cart = True
+                while(add_to_cart):
+                    print("select product")
+                    list_counter = 1
+
+
+                    print(self.stock.products)
+
+                    for product in self.stock.products:
+                        print(f"{list_counter}.  {product.name} | {product.price}  | {product.quantity}")
+                        list_counter += 1           
+                
+                    product_choice = input("select product by number: ")            
+                    product_quantity = input("Enter number: ")
+                    selected_product = self.stock.products[int(product_choice)-1].code
+                    self.cart.add(selected_product, int(product_quantity))
+                    choice = input("Add another product? (y/n): ")
+                    if choice == "y":
+                        add_to_cart = True
+                    elif choice == "n":
+                        add_to_cart = False
+                    else:
+                        print(MSG_WRONG_INPUT)
+                        add_to_cart = False
+
+                
+                
+            elif order_choice == "2":
+                print("Remove from cart")
+                # show items in cart
+                cart_products = self.cart.products
+                print("select product to remove")
+                list_counter = 1
+                list_items = []
+                for product in cart_products:
+                    for item in self.stock.products:
+                        if product== item.code:
+                            print(f"{list_counter}.  {item.name} | {item.price}  | {cart_products[product]}")
+                            list_items.append(item.code)
+                            list_counter += 1
+                selected_item =input("select product by number: ")
+                item_code = list_items[int(selected_item)-1]
+                self.cart.remove(item_code)
+                # ask user to select item to remove   
+            elif order_choice == "3":   
+                print("Clear the cart")
+            elif order_choice == "4":
+                print("Checkout")
+            elif order_choice == "0":
+                self.main_menu()
+            else:
+                print(MSG_WRONG_INPUT)
+                self.order_menu()
+        
+
+    def analytics_menu(self):       
+        print("1. Total income from purchases")
+        print("2. Prescription statistics")
+        print("3. Purchases for a user")
+        print("4. Sales by an agent")
+        print("5. Top sales")
+        print("0. Back")
+        analytics_choice = input("Enter your choice: ") 
+        if analytics_choice == "1":
+            print("Total income from purchases")
+        elif analytics_choice == "2":
+            print("Prescription statistics")
+        elif analytics_choice == "3":
+            print("Purchases for a user")
+        elif analytics_choice == "4":
+            print("Sales by an agent")
+        elif analytics_choice == "5":
+            print("Top sales")
+        elif analytics_choice == "0":
+            self.main_menu()

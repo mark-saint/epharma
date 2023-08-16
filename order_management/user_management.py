@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from .user import User
 from typing import List
+import os
 
 class UserManagement:
     """Main class to manage the user accounts
@@ -18,13 +19,30 @@ class UserManagement:
         """Returns the logged in user
         """
         #TODO: Read the file, and return the object corresponding to the user in the file
-
-        # with open(self.status_file, 'r') as f:
-            
-
+        
         #TODO: If the account is not logged in (from the credentials file), raise an exception
 
         #TODO: Deal with the case where the file does not exist
+
+        if not os.path.exists(self.status_file):
+            raise FileNotFoundError(".logged_in file not found")
+        
+        with open(self.status_file, 'r')  as f:
+            username = f.read().rstrip()
+
+        user = self.get_user_details(username)
+        
+        if user is  None:
+            raise Exception("user not found")
+        if user.logged_in == False:
+            raise Exception("user not logged in")
+        
+        return user
+
+
+
+
+
 
     def get_user_details(self, username: str) -> User:
         """Returns the account of a user
@@ -33,6 +51,10 @@ class UserManagement:
             username: the target username
         """
         #TODO: Loop through the loaded accounts and return the one with the right username
+
+        for user in self.users:
+            if user.username == username:
+                return user
         
 
     @staticmethod

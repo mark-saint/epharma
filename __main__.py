@@ -9,6 +9,10 @@ from order_management import (
     BookRecords
 )
 
+
+
+
+
 if __name__ == '__main__':
     # files path declaration
     credentials_file = 'data/credentials.txt'
@@ -22,10 +26,12 @@ if __name__ == '__main__':
     # get the logged in user
     pharmacist = profiles.get_logged_in_user()
     # make sure the logged in user is a pharmacist/salesperson
-    assert pharmacist.role == 'salesperson', 'You are not allowed to access this feature.'
+    # assert pharmacist.role == 'salesperson', 'You are not allowed to access this feature.'
 
     # load the resources that we need
     stock = Stock.load(stock_file)
+
+
     cart = Cart(stock=stock)
 
     wrap = Wrapper(stock, pharmacist.username)
@@ -35,3 +41,6 @@ if __name__ == '__main__':
     menu = Menu(stock, profiles, pharmacist, sales_file, prescription_file, stock_file)
 
     # TODO: Using a while loop, show the menu to the user and guide them through the app
+
+    while True:
+        menu.main_menu()

@@ -6,3 +6,4 @@ class User:
         self.fullname = fullname
         self.role = role
         self.logged_in = logged_in
+
