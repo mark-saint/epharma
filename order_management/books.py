@@ -31,7 +31,7 @@ class BookRecords:
         records_str = ""
         for transaction in self.transactions:
             position = position + 1
-            transaction_str = f"{position} | {transaction.date} | {transaction.customer} | {transaction.medication} | {transaction.quantity} | {transaction.purchase_price} | {transaction.prescription}"
+            transaction_str = f"{position} | {transaction.timestamp} | {transaction.customerID} | {transaction.quantity} | {transaction.purchase_price} | {transaction.prescriptionID}"
             records_str = records_str + transaction_str + "\n"
         return records_str
     def reportOnPrescriptions(self) -> str:
@@ -69,7 +69,20 @@ class BookRecords:
             
         """
         #TODO: Query the transactions to the `transactions` list below
-        transactions = None
+        # customer_transactions = ""
+        # for transaction in self.transactions:
+        #     if transaction.customerID == customerID:
+        #         transaction_str = f"{transaction} \n"
+        #         customer_transactions = customer_transactions + transaction_str
+        transactions = []
+        for customer_transactions in self.transactions:
+            if customer_transactions.customerID == customerID:
+                transactions.append(customer_transactions)
+        if len(transactions)==0:
+            return "No purchases by that user!"
+
+                
+        # transactions = None
 
         return BookRecords(transactions).__str__()
 
@@ -84,6 +97,12 @@ class BookRecords:
         """
         #TODO: Query the transactions to the `transactions` list below
         transactions = None
+        transactions = []
+        for customer_transactions in self.transactions:
+            if customer_transactions.salesperson == salesperson:
+                transactions.append(customer_transactions)
+        if len(transactions)==0:
+            return "No purchases by that user!"
 
         # return the string representation
         return BookRecords(transactions).__str__()
@@ -100,7 +119,10 @@ class BookRecords:
         A string representation of the top n 
         """
         #TODO: Query the top transactions and save them to the variable `transactions` below
-        transactions = None
+        transactions = []
+        #identify the transactions and sort them by teh price.
+        for transaction in self.transactions:
+            transactions.append(transaction)
 
         # return the string representation of the transactions.
         return BookRecords(transactions).__str__()

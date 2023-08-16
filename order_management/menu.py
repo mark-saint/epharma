@@ -145,11 +145,19 @@ class Menu:
         elif analytics_choice == "2":
             print(f"Prescription statistics: \n {books.reportOnPrescriptions()}")
         elif analytics_choice == "3":
-            print("Purchases for a user")
+            name = input("Enter user name: ")
+            purchases =books.purchasesByUser(name)
+            print(purchases)
+            
+            # print("Purchases for a user")
         elif analytics_choice == "4":
-            print("Sales by an agent")
+            name = input("Enter salesperson name: ")
+            sales =books.salesByAgent(name)
+            print(sales)
         elif analytics_choice == "5":
-            print("Top sales")
+            print("Top 10 sales \n")
+            top_sales = books.topNSales()
+            print(top_sales)
         elif analytics_choice == "0":
             self.main_menu()
 
