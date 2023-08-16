@@ -45,6 +45,16 @@ class BookRecords:
         # and aggregate for each, the corresponding total price.
        
        #check if the sale has a prescription ID, if it has one, use the prescription ID to get the prescription object, then find the name of the medication in the prescription object
+        prescription_str = ""
+        position =0
+        for sale in self.transactions:
+            if sale.prescriptionID != None:
+                position = position+1
+                sale_str = f"| {position} | {sale.prescriptionID} | {sale.purchase_price} |"
+                prescription_str = prescription_str + sale_str + "\n"
+        return prescription_str
+
+
 
         #TODO: output in the following format, the results: 
         # |    # | Prescription ID | Total Price |

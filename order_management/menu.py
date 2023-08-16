@@ -125,7 +125,9 @@ class Menu:
                 self.order_menu()
         
 
-    def analytics_menu(self):       
+    def analytics_menu(self): 
+        sales_file = 'data/sales.json'
+        books = BookRecords.load(sales_file)      
         print("1. Total income from purchases")
         print("2. Prescription statistics")
         print("3. Purchases for a user")
@@ -137,12 +139,11 @@ class Menu:
             print("Total income from purchases")
             # we can get this from BookRecords.totaltransactions()
             #create an instance of book records
-            sales_file = 'data/sales.json'
-            books = BookRecords.load(sales_file)
+            
             print(f"The total transactions is: {books.totalTransactions()}")
 
         elif analytics_choice == "2":
-            print("Prescription statistics")
+            print(f"Prescription statistics: \n {books.reportOnPrescriptions()}")
         elif analytics_choice == "3":
             print("Purchases for a user")
         elif analytics_choice == "4":
