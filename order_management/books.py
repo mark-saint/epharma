@@ -123,6 +123,7 @@ class BookRecords:
         #identify the transactions and sort them by teh price.
         for transaction in self.transactions:
             transactions.append(transaction)
+        transactions.sort(key=lambda x: x.purchase_price, reverse=True)
 
         # return the string representation of the transactions.
         return BookRecords(transactions).__str__()
